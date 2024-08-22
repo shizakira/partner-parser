@@ -150,3 +150,7 @@ button:-webkit-details-marker {
 
     height: 50px;
 }
+
+.bold{
+  font-weight: 600;
+}
