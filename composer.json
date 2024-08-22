@@ -1,0 +1,11 @@
+{
+    "name": "shizakira/sw-parser",
+    "autoload": {
+        "psr-4": {
+            "App\\": "html/"
+        }
+    },
+    "require": {
+        "imangazaliev/didom": "^2.0"
+    }
+}
