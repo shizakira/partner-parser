@@ -13,20 +13,18 @@ use App\Classes\Paginator;
 
 Database::init(...$dbParams);
 
-if (!empty($_POST['parse']) && $_POST['parse'] === '1') {
-    $parser = new Parser($partnersPath, $projectsPath, $logPath);
-    $parser->parsAllPartners();
-    $parser->parsAllProjects();
+$parser = new Parser($partnersPath, $projectsPath, $logPath);
+$model = new Model($partnersPath, $projectsPath);
 
-    $model = new Model($partnersPath, $projectsPath);
-    $model->writePartners();
-    $model->writeProjects();
+if (!empty($_POST['parse']) && $_POST['parse'] === '1') {
+    $parser->parse();
+    $model->writeToDB();
 }
 
 $paginator = new Paginator();
 
-try {
+if ($model->isTablesNotEmpty()) {
     require 'View/view.php';
-} catch (Exception) {
+} else {
     require 'View/parse.php';
 }

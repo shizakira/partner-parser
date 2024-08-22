@@ -7,7 +7,6 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const page = urlParams.get("page") ? urlParams.get("page") : 1;
 const links = document.querySelectorAll(".pagination");
-
 links[page - 1].classList.add("active");
 
 const nextPageBtn = document.querySelector(".next-page-btn");

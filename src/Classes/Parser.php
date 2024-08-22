@@ -24,6 +24,12 @@ class Parser
         $this->maxPagenValue = $maxPagenValue;
     }
 
+    public function parse()
+    {
+        $this->parsAllPartners();
+        $this->parsAllProjects();
+    }
+
     public function parsAllProjects()
     {
         $rows = $this->getElemsFromRow($this->filePath);

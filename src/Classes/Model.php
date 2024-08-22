@@ -18,6 +18,53 @@ class Model extends Database
     {
         $this->partnersPath = $partnersPath;
         $this->projectsPath = $projectsPath;
+
+        $sql = 'CREATE TABLE IF NOT EXISTS`partners` (
+                    `id` INT NOT NULL AUTO_INCREMENT,
+                    `name` VARCHAR(255) NOT NULL,
+                    `details_url` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                    `website` VARCHAR(255) NOT NULL,
+                    PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;';
+        $this->query($sql);
+
+        $sql = 'CREATE TABLE IF NOT EXISTS `projects` (
+                    `id` INT NOT NULL AUTO_INCREMENT,
+                    `partner_id` INT NOT NULL,
+                    `project_url` VARCHAR(255) NOT NULL,
+                    `product_version` VARCHAR(255) DEFAULT NULL,
+                    `description` TEXT,
+                    PRIMARY KEY (`id`),
+                    KEY `partner_id_idx` (`partner_id`),
+                    CONSTRAINT `fk_partner` FOREIGN KEY (`partner_id`) REFERENCES `partners` (`id`) ON DELETE CASCADE
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                    ';
+        $this->query($sql);
+    }
+
+    public function isTablesNotEmpty()
+    {
+        $sql = "SELECT 'partners' AS table_name, COUNT(*) > 0 AS not_empty
+                FROM partners
+                UNION
+                SELECT 'projects' AS table_name, COUNT(*) > 0 AS not_empty
+                FROM projects;";
+
+        $result = $this->query($sql);
+
+        foreach ($result as $row) {
+            if (!$row['not_empty']) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function writeToDB()
+    {
+        $this->writePartners();
+        $this->writeProjects();
     }
 
     public function writePartners()
