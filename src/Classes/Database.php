@@ -34,7 +34,7 @@ class Database
     public static function select($table, $offset = 0, $needle = '*', $whereArg = null)
     {
         $where = ($whereArg !== null) ? "WHERE $whereArg" : '';
-        $sql = "SELECT $needle FROM $table $where LIMIT 50 OFFSET $offset";
+        $sql = "SELECT $needle FROM $table $where LIMIT 51 OFFSET $offset";
         return self::query($sql);
     }
 }

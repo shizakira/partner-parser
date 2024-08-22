@@ -5,8 +5,7 @@ namespace App\Classes;
 class Paginator extends Database
 {
     private $totalPages;
-    private static $limit = 50;
-
+    private static $limit = 51;
     private $currentPage;
     private $offset;
 
@@ -33,7 +32,7 @@ class Paginator extends Database
             $html = <<<HTML
                 <div class="partner-row">
                     <p>ID записи: $id</p>
-                    <p>Партнер: <a href="$detailUrl">$name</a></p>
+                    <p>Партнер: <a href="$detailUrl" target="_blank">$name</a></p>
                     <p><a href="$address" target="_blank">Адрес сайта партнера</a></p>
                     <p><a href ="$detailUrl" target="_blank">Детальная страница на битриксе</a></p>
                     <p><a href="/?projects=true&id=$id" target="_blank">Проекты партнера</a></p>
@@ -47,7 +46,8 @@ class Paginator extends Database
     public function showPartnerProjects()
     {
         $whereArg = "partner_id = {$_GET['id']}";
-        $data = $this->select('projects', whereArg: $whereArg);
+        // $data = $this->select('projects', whereArg: $whereArg);
+        $data = $this->query("SELECT * FROM projects WHERE $whereArg");
 
         foreach ($data as $el) {
             [$id,, $projectUrl, $productVersion, $description] = array_values($el);

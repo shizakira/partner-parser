@@ -1,4 +1,6 @@
 <?php
+require $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
+
 $partnersPath = $_SERVER['DOCUMENT_ROOT'] . "/Files/partners_data.txt";
 $projectsPath = $_SERVER['DOCUMENT_ROOT'] . "/Files/projects.txt";
 $logPath = $_SERVER['DOCUMENT_ROOT'] . '/logs.log';
