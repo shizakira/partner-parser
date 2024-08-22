@@ -5,23 +5,23 @@ ini_set('memory_limit', '2048M');
 ignore_user_abort(true);
 
 require $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
+require 'config.php';
 
-use App\Parser;
-use App\Database;
-use App\Model;
-use App\Paginator;
-use DiDom\Document;
+use App\Classes\Parser;
+use App\Classes\Database;
+use App\Classes\Model;
+use App\Classes\Paginator;
 
-Database::init('db', 'user', 'user_password', 'mydb');
+Database::init(...$dbParams);
 
-$parser = new Parser();
+$parser = new Parser($partnersPath, $projectsPath, $logPath);
 // $parser->parsAllPartners();
 // $parser->parsAllProjects();
 
-$model = new Model();
+$model = new Model($partnersPath, $projectsPath);
 // $model->writePartners();
 // $model->writeProjects();
 
 $paginator = new Paginator();
 
-require 'view.php';
+require 'View/view.php';

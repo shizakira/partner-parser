@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Classes;
 
-use App\Database;
+use App\Classes\Traits\Filer;
 
 class Model extends Database
 {
@@ -10,10 +10,19 @@ class Model extends Database
 
     private $partners = ['id', 'name', 'details_url', 'website'];
     private $projects = ['partner_id', 'project_url', 'product_version', 'description'];
+    private $partnersPath;
+    private $projectsPath;
+
+
+    public function __construct($partnersPath, $projectsPath)
+    {
+        $this->partnersPath = $partnersPath;
+        $this->projectsPath = $projectsPath;
+    }
 
     public function writePartners()
     {
-        $rows = $this->getElemsFromRow('partners_data.txt');
+        $rows = $this->getElemsFromRow($this->partnersPath);
 
         foreach ($rows as $row) {
             $row = explode('<#>', $row);
@@ -30,7 +39,7 @@ class Model extends Database
 
     public function writeProjects()
     {
-        $rows = $this->getElemsFromRow('projects.txt');
+        $rows = $this->getElemsFromRow($this->projectsPath);
         $partnerProjects = '';
 
         foreach ($rows as $row) {
@@ -48,5 +57,7 @@ class Model extends Database
 
             $partnerProjects = '';
         }
+
+        echo "Data inserted successfully";
     }
 }

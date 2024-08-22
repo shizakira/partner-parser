@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Classes;
 
 class Paginator extends Database
 {
@@ -54,7 +54,7 @@ class Paginator extends Database
             $html = <<<HTML
                 <div class="project-row">
                     <p>ID проекта: $id</p>
-                    <p>Адрес проекта: <a href="$projectUrl">$projectUrl</a></p>
+                    <p>Адрес проекта: <a href="$projectUrl" target="_blank">$projectUrl</a></p>
                     <p>Версия продукта: $productVersion</p>
                     <p>Описание проекта: $description</p>
                 </div>

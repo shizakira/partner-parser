@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Classes;
 
 use DiDom\Document;
-use App\Filer;
+use App\Classes\Traits\Filer;
 
 class Parser
 {
@@ -11,13 +11,16 @@ class Parser
 
     private $baseUrl = 'https://www.1c-bitrix.ru/partners/';
     private $rootUrl = 'https://www.1c-bitrix.ru';
-    private $filePath = 'partners_data.txt';
-    private $logPath = 'logs.log';
-    private $projectsPath = 'projects.txt';
+    private $filePath;
+    private $logPath;
+    private $projectsPath;
     private $maxPagenValue;
 
-    public function __construct($maxPagenValue = 120)
+    public function __construct($partnersPath, $projectsPath, $logPath, $maxPagenValue = 120)
     {
+        $this->filePath = $partnersPath;
+        $this->projectsPath = $projectsPath;
+        $this->logPath = $logPath;
         $this->maxPagenValue = $maxPagenValue;
     }
 

@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: blue;
+}
+
+.content {
+    margin: 20px auto;
+    max-width: 1400px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.partner-rows {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.partner-row {
+    padding: 10px;
+    width: 600px;
+    border: 1px solid black;
+
+}
+
+.project-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project-row {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.pages {
+    display: flex;
+    gap: 5px;
+}
+
+.active {
+    text-decoration: underline;
+}
