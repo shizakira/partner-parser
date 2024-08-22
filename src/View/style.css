@@ -10,10 +10,15 @@ body{
 
 a {
     text-decoration: none;
+    color: #007BFF;
 }
 
 a:visited {
-    color: blue;
+    color: #007BFF;
+}
+
+a:hover {
+    font-weight: 600;
 }
 
 button{
