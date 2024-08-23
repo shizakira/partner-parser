@@ -46,7 +46,6 @@ class Paginator extends Database
     public function showPartnerProjects()
     {
         $whereArg = "partner_id = {$_GET['id']}";
-        // $data = $this->select('projects', whereArg: $whereArg);
         $data = $this->query("SELECT * FROM projects WHERE $whereArg");
 
         foreach ($data as $el) {
